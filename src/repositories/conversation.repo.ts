@@ -2,7 +2,7 @@ import { eq } from "drizzle-orm";
 import { db } from "../db";
 import { conversations } from "../db/schema";
 
-export const conversationRepository = () => ({
+const conversationRepository = () => ({
   createConversations: async () => {
     const result = await db.insert(conversations).values({}).returning();
     return result[0];
@@ -18,3 +18,5 @@ export const conversationRepository = () => ({
     return result[0] ?? null;
   },
 });
+
+export const ConversationRepository = conversationRepository()

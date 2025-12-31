@@ -2,7 +2,7 @@ import { db } from "../db";
 import { messages } from "../db/schema";
 import { eq, asc } from "drizzle-orm";
 
-export const MessageRepository = {
+export const messageRepository = {
   async createMessage(
     conversationId: string,
     sender: "user" | "ai",
