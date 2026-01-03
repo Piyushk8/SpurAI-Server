@@ -7,4 +7,5 @@ export const settings = {
   OPEN_AI_API_KEY: process.env.OPEN_AI_API_KEY,
   Allowed_ORIGINS: [process.env.FRONTEND_URL!],
   PINO_LOG_LEVEL: process.env.PINO_LOG_LEVEL || "info",
+  DOMAIN_ENDPOINT:process.env.DOMAIN_ENDPOINT || ".vercel.app"
 };
