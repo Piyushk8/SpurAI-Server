@@ -5,6 +5,6 @@ export const settings = {
   BASE_API_URL: process.env.BASE_API_URL || "/api/v1",
   GEMINI_API_KEY: process.env.GEMINI_API_KEY,
   OPEN_AI_API_KEY: process.env.OPEN_AI_API_KEY,
-  Allowed_ORIGINS: ["http://localhost:5173", process.env.FRONTEND_URL!],
+  Allowed_ORIGINS: [process.env.FRONTEND_URL!],
   PINO_LOG_LEVEL: process.env.PINO_LOG_LEVEL || "info",
 };

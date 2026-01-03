@@ -18,7 +18,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: ["http://localhost:5173"].concat(settings.Allowed_ORIGINS),
+    origin: [""].concat(settings.Allowed_ORIGINS),
     methods: ["POST", "OPTIONS"],
     allowedHeaders: ["Content-Type"],
   })
