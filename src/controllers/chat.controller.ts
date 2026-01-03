@@ -6,6 +6,7 @@ import { ChatService } from "../services/chat.service";
 import { NextFunction, Request, Response } from "express";
 import logger from "../utils/logger";
 import { SSEEvent } from "../utils/sse";
+import { settings } from "../config/env";
 
 // export const chatController = TryCatch(async (req, res) => {
 //   const parsed = messageInputSchema.safeParse(req.body);
@@ -28,14 +29,19 @@ export const chatStreamController = async (
   nex: NextFunction
 ) => {
   try {
- 
     const message = req.query.message as string;
     const sessionId = req.query.sessionId as string | undefined;
     const parsedBody = messageInputSchema.safeParse({ message, sessionId });
     if (!parsedBody.success) throw new ApiError(400, parsedBody.error.message);
     res.setHeader("Content-Type", "text/event-stream");
     res.setHeader("Connection", "keep-alive");
-    res.setHeader("Access-Control-Allow-Origin", "http://localhost:5173");
+
+    const origin = req.headers.origin;
+
+    if (settings.Allowed_ORIGINS.includes(origin!)) {
+      res.setHeader("Access-Control-Allow-Origin", origin!);
+    }
+
     res.setHeader("X-Accel-Buffering", "no"); // for Nginx
     res.setHeader("Cache-Control", "no-cache, no-transform"); // for CDNs
     res.flushHeaders();
