@@ -10,6 +10,7 @@ import { ApiError } from "./utils/error";
 import { settings } from "./config/env";
 import logger from "./utils/logger";
 import { mainRouter } from "./routes";
+import { corsMiddleware } from "./utils/corsMiddleware";
 
 dotenv.config();
 
@@ -22,8 +23,9 @@ app.use(
     allowedHeaders: ["Content-Type"],
   })
 );
-app.use(express.json());
 
+app.use(corsMiddleware)
+app.use(express.json());
 
 app.use("/api/v1", mainRouter);
 

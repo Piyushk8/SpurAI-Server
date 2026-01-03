@@ -36,12 +36,6 @@ export const chatStreamController = async (
     res.setHeader("Content-Type", "text/event-stream");
     res.setHeader("Connection", "keep-alive");
 
-    const origin = req.headers.origin;
-
-    if (settings.Allowed_ORIGINS.includes(origin!)) {
-      res.setHeader("Access-Control-Allow-Origin", origin!);
-    }
-
     res.setHeader("X-Accel-Buffering", "no"); // for Nginx
     res.setHeader("Cache-Control", "no-cache, no-transform"); // for CDNs
     res.flushHeaders();
